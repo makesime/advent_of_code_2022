@@ -1,6 +1,15 @@
 # input = File.readlines("day03/day03_test_input.txt")
 input = File.readlines("day03/day03_input.txt")
 
+def letter_values
+  values = {}
+  [*('a'..'z'), *('A'..'Z')].each_with_index do |letter, index|
+    values[letter] = index + 1
+  end
+
+  values
+end
+
 duplicated_items = []
 input.each do |i|
   current_match = 0
@@ -16,13 +25,4 @@ input.each do |i|
   end
 end
 
-modifier = 0
-values = {}
-[*('a'..'z'), *('A'..'Z')].each do |letter|
-  modifier += 1
-  values[letter] = modifier
-end
-
-puts "Sum of all duplicated items is: #{duplicated_items.map{ |o| values[o] }.sum}"
-
-
+puts "Sum of all duplicated items is: #{duplicated_items.map{ |o| letter_values[o] }.sum}"
